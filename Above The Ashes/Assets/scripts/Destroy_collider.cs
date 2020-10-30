@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class chestTrigger : MonoBehaviour
+public class Destroy_collider : MonoBehaviour
 {
     Animator anim;
     // Start is called before the first frame update
@@ -19,10 +19,11 @@ public class chestTrigger : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider collid)
     {
-      anim.SetTrigger("openlid");
-//    SceneManager.LoadScene (0);
+//      anim.SetTrigger("openlid");
+//      SceneManager.LoadScene (0);
+      Destroy(GetComponent<Collider>().gameObject);
     }
 
     void OnTriggerExit(Collider other)
