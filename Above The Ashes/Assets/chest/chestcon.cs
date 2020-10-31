@@ -6,6 +6,8 @@ public class chestcon : MonoBehaviour
 {
     // get the "Click to open the chest" text
     public GameObject UIObject;
+    private bool isOpen = false;
+    private bool isMoving = false;
 
     void Start()
     {
@@ -31,9 +33,19 @@ public class chestcon : MonoBehaviour
 
     void OnMouseDown()
     {
-      // when player clicks on the chest, the chest lid will open
-      GetComponent<Rigidbody>().angularVelocity= new Vector3(.8f,0,0);
-      StartCoroutine(stopOpening());
+      if (isMoving) {
+        return;
+      }
+      isMoving = true;
+      if (!isOpen) {
+        // when player clicks on the chest, the chest lid will open
+        GetComponent<Rigidbody>().angularVelocity= new Vector3(.8f,0,0);
+        StartCoroutine(stopOpening());
+      }
+      else {
+        GetComponent<Rigidbody>().angularVelocity= new Vector3(-.8f,0,0);
+        StartCoroutine(stopOpening());
+      }
     }
 
     // this allows chest from continuing opening
@@ -41,5 +53,7 @@ public class chestcon : MonoBehaviour
     {
       yield return new WaitForSeconds (1.6f);
       GetComponent<Rigidbody>().angularVelocity= new Vector3(0,0,0);
+      isOpen = !isOpen;
+      isMoving = false;
     }
 }
