@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class Collider_restart : MonoBehaviour
@@ -10,7 +11,8 @@ public class Collider_restart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -22,7 +24,7 @@ public class Collider_restart : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-      SceneManager.LoadScene (0);
+            SceneManager.LoadScene(0);
     }
 
     void OnTriggerExit(Collider other)
