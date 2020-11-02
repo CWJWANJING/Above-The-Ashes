@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class Destroy_collider : MonoBehaviour
 {
+    public Text ui;
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,10 @@ public class Destroy_collider : MonoBehaviour
 
     void OnTriggerEnter(Collider collid)
     {
-//      anim.SetTrigger("openlid");
-//      SceneManager.LoadScene (0);
-      Destroy(GetComponent<Collider>().gameObject);
+        //      anim.SetTrigger("openlid");
+        //      SceneManager.LoadScene (0);
+        ui.text = "";
+        Destroy(GetComponent<Collider>().gameObject);
     }
 
     void OnTriggerExit(Collider other)
