@@ -18,6 +18,7 @@ public class PlayerSystem : MonoBehaviour
     private double shootTimeInterval = 0;
 
     public Text PlayerUI;
+    public Text HitMessage;
 
     public GameSystem gs;
     public TPSCamera TPSC;
@@ -28,6 +29,7 @@ public class PlayerSystem : MonoBehaviour
     void Start()
     {
         PlayerUI.text = "";
+        HitMessage.text = "";
         shootTimeInterval = 1 / shootSpeed;
 
     }
@@ -52,19 +54,25 @@ public class PlayerSystem : MonoBehaviour
     private void fire() {
         //计算准星的位置
         Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-        Vector3 targetPosition = Camera.main.transform.position + Camera.main.transform.forward * 5;
+        Vector3 targetPosition = Camera.main.transform.position + Camera.main.transform.forward * (int)range;
         RaycastHit hit;
         ammo -= 1;
         ads.Play();
-        if (Physics.Raycast(rayOrigin, Camera.main.transform.forward, out hit, 5))
+        if (Physics.Raycast(rayOrigin, Camera.main.transform.forward, out hit, (int)range))
         {
             if (hit.collider.gameObject.tag == "Zombie") {
                 gs.HitTo(hit.collider.gameObject);
+                HitMessage.text = "Take demage to " + hit.collider.gameObject.tag + " :" + attackPoint;
+                this.Invoke("ResetMessage", (float)0.5);
             }
             targetPosition = hit.point;
         }
         
         
+    }
+
+    public void ResetMessage() {
+        HitMessage.text = "";
     }
 
     void OnTriggerEnter(Collider other)

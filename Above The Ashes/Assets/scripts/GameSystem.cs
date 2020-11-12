@@ -48,7 +48,6 @@ public class GameSystem : MonoBehaviour
         else {
             enemy.GetComponent<EnemyState>().healthPoint = New_enem_hp;
         }
-        print("Enemy hp: " + enemy.GetComponent<EnemyState>().healthPoint);
     }
 
     public void Death(GameObject body) {
