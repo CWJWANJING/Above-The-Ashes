@@ -26948,7 +26948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &767019849
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46945,6 +46945,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802663581}
   m_CullTransparentMesh: 0
+--- !u!1 &1803296116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 285548345058521188, guid: c8b1cebee5fced549a9a8eb454f7faf0, type: 3}
+  m_PrefabInstance: {fileID: 1867398210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1803296117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803296116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4da20aadff88346bf47754d0bd95bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vector3: {x: 0, y: 0, z: 0}
+  zombie: {fileID: 1803296116}
+  maxSpeed: 0.5
+  speed: 0
+  BehState: 0
 --- !u!4 &1806170032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6530740819188784799, guid: 19e9581cc946cbf418a3e00c3daa7669, type: 3}
@@ -52339,6 +52361,14 @@ PrefabInstance:
       propertyPath: AttackInfo
       value: 
       objectReference: {fileID: 1659368387}
+    - target: {fileID: -5285497118652927920, guid: c8b1cebee5fced549a9a8eb454f7faf0, type: 3}
+      propertyPath: isAttack
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5285497118652927920, guid: c8b1cebee5fced549a9a8eb454f7faf0, type: 3}
+      propertyPath: sight
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 285548345058521188, guid: c8b1cebee5fced549a9a8eb454f7faf0, type: 3}
       propertyPath: m_Name
       value: Zombie1
@@ -52373,7 +52403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3867784403107119735, guid: c8b1cebee5fced549a9a8eb454f7faf0, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3867784403107119735, guid: c8b1cebee5fced549a9a8eb454f7faf0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -52387,6 +52417,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4443908502236454407, guid: c8b1cebee5fced549a9a8eb454f7faf0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6568256711070297869, guid: c8b1cebee5fced549a9a8eb454f7faf0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 799dad7811adac64cb1695ae36615550, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8b1cebee5fced549a9a8eb454f7faf0, type: 3}
 --- !u!4 &1867398211 stripped

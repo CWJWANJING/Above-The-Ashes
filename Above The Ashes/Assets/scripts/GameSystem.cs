@@ -51,6 +51,12 @@ public class GameSystem : MonoBehaviour
     }
 
     public void Death(GameObject body) {
+        body.GetComponent<EnemyState>().isDead = true;
+        Destroy(body.GetComponent<BoxCollider>());
+        this.Invoke("deleteBody", 5);
+    }
+
+    public void deleteBody(GameObject body) {
         Destroy(body);
     }
 
