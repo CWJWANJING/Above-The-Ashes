@@ -23,6 +23,7 @@ public class PlayerSystem : MonoBehaviour
     public GameSystem gs;
     public TPSCamera TPSC;
     public AudioSource ads;
+    public GameObject firePoint;
 
     public Boolean isAttack = false;
 
@@ -53,7 +54,9 @@ public class PlayerSystem : MonoBehaviour
 
     private void fire() {
         //计算准星的位置
-        Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+        //Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+        Vector3 rayOrigin = firePoint.transform.position;
+        print(rayOrigin);
         Vector3 targetPosition = Camera.main.transform.position + Camera.main.transform.forward * (int)range;
         RaycastHit hit;
         ammo -= 1;
