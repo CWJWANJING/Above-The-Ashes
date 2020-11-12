@@ -10,22 +10,20 @@ public class buttonCon : MonoBehaviour
 
     void Start()
     {
-      hintImage.enabled = false;
+      Debug.Log("Start.");
+      hintImage.gameObject.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter()
     {
-        // when player is near the chest
-        if (other.tag == "Player")
-        {
-            // show the text
-            hintImage.enabled = true;
-        }
+      Debug.Log("Enter.");
+      hintImage.gameObject.SetActive(true);
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit()
     {
+      Debug.Log("Leave.");
         // when player leaves the trigger, text disappear
-        hintImage.enabled = false;
+      hintImage.gameObject.SetActive(false);
     }
 }
