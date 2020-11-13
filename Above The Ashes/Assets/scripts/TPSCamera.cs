@@ -8,6 +8,7 @@ public class TPSCamera : MonoBehaviour
     public Camera cam;//摄像机，是本物体下的子物体
     public Transform player;//玩家物体的Transform
     public Vector3 playerOffset;//本物体与玩家位置的偏移向量
+    public GameObject pistol;
 
     public float rotateSpeed;//控制旋转速度
     public float moveSpeed;//控制跟随的平滑度
@@ -22,6 +23,9 @@ public class TPSCamera : MonoBehaviour
     public float localOffsetAngleDown = 1.5f;//根据向下的角度而产生的偏移量的最大值
     private float localOffsetCollider = 0;//根据玩家与摄像机间是否有遮挡而产生的偏移量
 
+    private Animator animator;
+    private bool isSprint;
+
     public bool isAiming = false;//是否正在瞄准
 
     private void Awake()
@@ -34,14 +38,30 @@ public class TPSCamera : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))//鼠标右键按下为瞄准
-        {
-            isAiming = true;
-        }
-        if (Input.GetMouseButtonUp(1))//鼠标右键松开停止瞄准
+        animator = player.gameObject.GetComponent<Animator>();
+        isSprint = animator.GetBool("IsSprinting");
+        if (isSprint)
         {
             isAiming = false;
+            pistol.SetActive(false);
+
         }
+        if (Input.GetMouseButtonDown(1) && !isSprint)//鼠标右键按下为瞄准
+        {
+           isAiming = !isAiming;
+           pistol.SetActive(isAiming);
+        }
+        //if (Input.GetMouseButtonDown(1) && !isSprint)//鼠标右键按下为瞄准
+        //{
+        //   isAiming = true;
+        //   pistol.SetActive(true);
+        //}
+        //if (Input.GetMouseButtonUp(1))//鼠标右键松开停止瞄准
+        //{
+        //  isAiming = false;
+        //   pistol.SetActive(false);
+
+        //}
         SetPosAndRot();//设置视角旋转后的位置和朝向
         // Cursor.visible = false;//隐藏鼠标
     }

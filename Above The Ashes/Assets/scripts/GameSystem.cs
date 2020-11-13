@@ -8,6 +8,9 @@ public class GameSystem : MonoBehaviour
 {
     public PlayerSystem player;
     public GameObject DeadMessage;
+    public AudioSource ads_short;
+    public AudioSource ads_long;
+
 
 
     // Start is called before the first frame update
@@ -29,11 +32,14 @@ public class GameSystem : MonoBehaviour
         {
             player.healthPoint = 0;
             DeadMessage.SetActive(true);
+            ads_long.Play();
             this.Invoke("Reset", 3);
 
         }
         else {
             player.healthPoint = hp_temp;
+            ads_short.Play();
+
         }
     }
 
@@ -43,10 +49,13 @@ public class GameSystem : MonoBehaviour
         if (New_enem_hp <= 0)
         {
             enemy.GetComponent<EnemyState>().healthPoint = 0;
+            ads_long.Play();
             Death(enemy);
         }
         else {
             enemy.GetComponent<EnemyState>().healthPoint = New_enem_hp;
+            ads_short.Play();
+
         }
     }
 

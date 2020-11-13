@@ -23,6 +23,7 @@ public class PlayerSystem : MonoBehaviour
     public GameSystem gs;
     public TPSCamera TPSC;
     public AudioSource ads;
+    public AudioSource ads_suffer;
     public GameObject firePoint;
 
     public Boolean isAttack = false;
@@ -65,6 +66,7 @@ public class PlayerSystem : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Zombie") {
                 gs.HitTo(hit.collider.gameObject);
+                ads_suffer.Play();
                 HitMessage.text = "Take demage to " + hit.collider.gameObject.tag + " :" + attackPoint;
                 this.Invoke("ResetMessage", (float)0.5);
             }
