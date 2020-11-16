@@ -30,12 +30,14 @@ public class showPuzzleWeapon : MonoBehaviour
           // the puzzle image will disappear
           puzzleImage.gameObject.SetActive(false);
         }
+
         // if escape key is pressed
         if (Input.GetKey(KeyCode.Escape))
         {
           // image will disappear
           puzzleImage.gameObject.SetActive(false);
         }
+
       }
     }
 
