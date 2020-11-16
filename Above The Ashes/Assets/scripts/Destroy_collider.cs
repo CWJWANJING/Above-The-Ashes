@@ -24,7 +24,7 @@ public class Destroy_collider : MonoBehaviour
     {
         //      anim.SetTrigger("openlid");
         //      SceneManager.LoadScene (0);
-        ui.text = "";
+        //      ui.text = "";
         Destroy(GetComponent<Collider>().gameObject);
     }
 
