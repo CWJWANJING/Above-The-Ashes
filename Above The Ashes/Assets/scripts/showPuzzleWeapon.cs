@@ -21,6 +21,8 @@ public class showPuzzleWeapon : MonoBehaviour
         // if the player press key F
         if (Input.GetKey("f"))
         {
+          // other things will stop
+          Time.timeScale = 0f;
             // the puzzle will appear
             puzzleImage.gameObject.SetActive(true);
         }
@@ -29,6 +31,7 @@ public class showPuzzleWeapon : MonoBehaviour
         {
           // the puzzle image will disappear
           puzzleImage.gameObject.SetActive(false);
+          Time.timeScale = 1f;
         }
 
         // if escape key is pressed
@@ -36,6 +39,7 @@ public class showPuzzleWeapon : MonoBehaviour
         {
           // image will disappear
           puzzleImage.gameObject.SetActive(false);
+          Time.timeScale = 1f;
         }
 
       }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerSystem : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class PlayerSystem : MonoBehaviour
 
     public Boolean isAttack = false;
 
+    public static bool gamePause = false;
+    public GameObject PauseMenuUI;
+
     void Start()
     {
         PlayerUI.text = "";
@@ -51,6 +55,31 @@ public class PlayerSystem : MonoBehaviour
             fire();
             shootTimer = 0;
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+          if (gamePause){
+            Resume();
+          }
+          else
+          {
+            Pause();
+          }
+        }
+
+    }
+
+    public void Resume()
+    {
+      PauseMenuUI.SetActive(false);
+      Time.timeScale = 1f;
+      gamePause = false;
+    }
+
+    public void Pause()
+    {
+      PauseMenuUI.SetActive(true);
+      Time.timeScale = 0f;
+      gamePause = true;
     }
 
     private void fire() {
@@ -72,8 +101,8 @@ public class PlayerSystem : MonoBehaviour
             }
             targetPosition = hit.point;
         }
-        
-        
+
+
     }
 
     public void ResetMessage() {
@@ -82,7 +111,7 @@ public class PlayerSystem : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        
+
         //if (gs.player.isAttack && other.tag == "Zombie")
         //{
            // gs.HitTo(gameObject);
@@ -91,7 +120,7 @@ public class PlayerSystem : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
+
     }
 
 
