@@ -8,6 +8,7 @@ public class chestcon : MonoBehaviour
     public GameObject UIObject;
     private bool isOpen = false;
     private bool isMoving = false;
+    public GameObject player;
 
     void Start()
     {
@@ -15,38 +16,37 @@ public class chestcon : MonoBehaviour
       UIObject.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        // when player is near the chest
-        if (other.tag == "Player")
+    void Update()
+      {
+        // if player is closenough with this object
+        if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 3)
         {
-            // show the text
-            UIObject.SetActive(true);
+          // show the instruction text
+          UIObject.SetActive(true);
+          // if the player press key F
+          if (Input.GetKey("f"))
+          {
+            // if the animation is already moving, do nothing
+            if (isMoving) {
+              return;
+            }
+            isMoving = true;
+            if (!isOpen) {
+              // when player clicks on the chest, the chest lid will open
+              GetComponent<Rigidbody>().angularVelocity= new Vector3(.8f,0,0);
+              StartCoroutine(stopOpening());
+            }
+            else {
+              GetComponent<Rigidbody>().angularVelocity= new Vector3(-.8f,0,0);
+              StartCoroutine(stopOpening());
+            }
+         }
+
         }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        // when player leaves the trigger, text disappear
-        UIObject.SetActive(false);
-    }
-
-    void OnMouseDown()
-    {
-      if (isMoving) {
-        return;
+        else{
+          UIObject.SetActive(false);
+        }
       }
-      isMoving = true;
-      if (!isOpen) {
-        // when player clicks on the chest, the chest lid will open
-        GetComponent<Rigidbody>().angularVelocity= new Vector3(.8f,0,0);
-        StartCoroutine(stopOpening());
-      }
-      else {
-        GetComponent<Rigidbody>().angularVelocity= new Vector3(-.8f,0,0);
-        StartCoroutine(stopOpening());
-      }
-    }
 
     // this allows chest from continuing opening
     IEnumerator stopOpening()
