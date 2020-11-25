@@ -17,7 +17,7 @@ public class triggerAutoDoor : MonoBehaviour
     {
       if (puzzleControl.win)
       {
-        anim.SetTrigger("openDoor");
+        anim.SetTrigger("openTriggerDoor");
       }
     }
 
