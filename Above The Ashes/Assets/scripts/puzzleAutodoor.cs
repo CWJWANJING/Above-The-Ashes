@@ -17,6 +17,7 @@ public class puzzleAutodoor : MonoBehaviour
     {
       if (puzzleControl.win)
       {
+        Debug.Log("hello");
         anim.SetTrigger("openDoor");
       }
     }
