@@ -8,6 +8,7 @@ public class Level1switchD : MonoBehaviour
     public GameObject Door2;
 	public GameObject Door3;
 	public GameObject Door4;
+	public GameObject player;
     private bool isOpen = false;
 
     void Start()
@@ -32,19 +33,25 @@ public class Level1switchD : MonoBehaviour
         UIObject.SetActive(false);
     }
 
-    void OnMouseDown()
+
+	
+	void Update()
     {
-        if (isOpen)
-        {
-            return;
+      // if player is closenough with this object
+		if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 1.5)
+		{
+			UIObject.SetActive(true);
+		
+			if (Input.GetKey("f"))
+			{
+				Door2.SetActive(true);
+				Door3.SetActive(false);
+				Door4.SetActive(false);
+			}
+			
         }
-        else
-        {
-            //Door1.SetActive(true);
-			Door2.SetActive(true);
-			Door3.SetActive(false);
-			Door4.SetActive(false);
-            isOpen = false;
-        }
+		else{
+        UIObject.SetActive(false);
+		}
     }
 }

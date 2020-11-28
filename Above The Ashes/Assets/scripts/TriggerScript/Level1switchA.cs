@@ -5,7 +5,8 @@ using UnityEngine;
 public class Level1switchA : MonoBehaviour
 {
     public GameObject UIObject;
-    public GameObject CubeWays;
+    public GameObject Door3;
+	public GameObject player;
     private bool isOpen = false;
 
     void Start()
@@ -38,8 +39,26 @@ public class Level1switchA : MonoBehaviour
         }
         else
         {
-            CubeWays.SetActive(false);
+            Door3.SetActive(false);
             isOpen = false;
         }
+    }
+	
+	void Update()
+    {
+      // if player is closenough with this object
+		if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 1.5)
+		{
+			UIObject.SetActive(true);
+		
+			if (Input.GetKey("f"))
+			{
+				Door3.SetActive(false);
+			}
+			
+        }
+		else{
+        UIObject.SetActive(false);
+		}
     }
 }
