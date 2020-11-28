@@ -5,10 +5,9 @@ using UnityEngine;
 public class Level1switchB : MonoBehaviour
 {
     public GameObject UIObject;
-    public GameObject Door2;
-	public GameObject Door3;
-	public GameObject player;
-    private bool isOpen = false;
+    public GameObject player;
+    public static bool door2open;
+    public static bool door3open;
 
     void Start()
     {
@@ -38,17 +37,17 @@ public class Level1switchB : MonoBehaviour
 		if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 1.5)
 		{
 			UIObject.SetActive(true);
-		
+
 			if (Input.GetKey("f"))
 			{
-				Door2.SetActive(false);
-				Door3.SetActive(true);
+				door2open = true;
+				door3open = false;
 			}
-			
+
         }
 		else{
 			UIObject.SetActive(false);
 		}
     }
-	
+
 }

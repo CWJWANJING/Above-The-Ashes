@@ -5,12 +5,11 @@ using UnityEngine;
 public class Level1switchC : MonoBehaviour
 {
     public GameObject UIObject;
-	public GameObject Door1;
-    public GameObject Door2;
-	public GameObject Door3;
-	public GameObject Door4;
-	public GameObject player;
-    private bool isOpen = false;
+	  public GameObject player;
+    public static bool door1open;
+    public static bool door2open;
+    public static bool door3open;
+    public static bool door4open;
 
     void Start()
     {
@@ -34,22 +33,22 @@ public class Level1switchC : MonoBehaviour
         UIObject.SetActive(false);
     }
 
-    
+
 	void Update()
     {
       // if player is closenough with this object
 		if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 1.5)
 		{
 			UIObject.SetActive(true);
-		
+
 			if (Input.GetKey("f"))
 			{
-				Door1.SetActive(false);
-				Door2.SetActive(true);
-				Door3.SetActive(true);
-				Door4.SetActive(true);
+        door1open = true;
+				door2open = false;
+        door3open = false;
+        door4open = false;
 			}
-			
+
         }
 		else{
 			UIObject.SetActive(false);
