@@ -11,10 +11,13 @@ public class ZombieWalk : MonoBehaviour
     public float maxSpeed = 3;
     public float speed;
     public float BehState = 0;
+    public GameObject eye;
+
 
     private GameObject target;
     private Animator animator;
     private Transform myTransform;
+
 
     private int WalkID = Animator.StringToHash("tracing");
     private int DeadState = Animator.StringToHash("Dead");
@@ -44,18 +47,20 @@ public class ZombieWalk : MonoBehaviour
         }
         else if (zombie.GetComponent<EnemyState>().dis2Player > zombie.GetComponent<EnemyState>().sight / 2
             && zombie.GetComponent<EnemyState>().dis2Player < zombie.GetComponent<EnemyState>().sight
-            && !zombie.GetComponent<EnemyState>().isDead)
+            && !zombie.GetComponent<EnemyState>().isDead && ray2Player())
         {
-            //BehState = 1;
             BehState = (float)(zombie.GetComponent<EnemyState>().dis2Player / (zombie.GetComponent<EnemyState>().sight / 2));
-            speed = maxSpeed;
+            speed = maxSpeed* (float)0.2;
         }
         else if (zombie.GetComponent<EnemyState>().dis2Player < zombie.GetComponent<EnemyState>().sight / 2
             && zombie.GetComponent<EnemyState>().dis2Player != zombie.GetComponent<EnemyState>().range
-            && !zombie.GetComponent<EnemyState>().isDead)
+            && !zombie.GetComponent<EnemyState>().isDead && ray2Player())
         {
-            BehState = (float)0.5;
             BehState = (float)(zombie.GetComponent<EnemyState>().dis2Player / (zombie.GetComponent<EnemyState>().sight / 2));
+            if(BehState <= 0.5) {
+                BehState = (float)0.5;    
+            }
+            print(BehState);
             speed = maxSpeed * (float)0.6;
         }
         else if (zombie.GetComponent<EnemyState>().isAttack
@@ -69,12 +74,35 @@ public class ZombieWalk : MonoBehaviour
         animator.SetBool(AttackState, zombie.GetComponent<EnemyState>().isAttack);
 
         //Walk
-        if (!zombie.GetComponent<EnemyState>().isDead) {
-            myTransform.rotation = Quaternion.Slerp(myTransform.rotation,
-            Quaternion.LookRotation(target.transform.position - myTransform.position),
-            90 * Time.deltaTime);
-            transform.localPosition += transform.forward * Time.deltaTime * speed;
+        if (!zombie.GetComponent<EnemyState>().isDead && ray2Player()){
+              myTransform.rotation = Quaternion.Slerp(myTransform.rotation,
+              Quaternion.LookRotation(target.transform.position - myTransform.position),
+              90 * Time.deltaTime);
+              transform.localPosition += transform.forward * Time.deltaTime * speed;
+        }
+        if (!ray2Player()) {
+            BehState = 0;
+            speed = 0;
         }
         
+    }
+
+    private bool ray2Player()
+    {
+        bool sight2player = false;
+        Vector3 rayOrigin = eye.transform.position;
+        RaycastHit hit;
+        Vector3 rayTarget = (target.transform.position - rayOrigin).normalized;
+        if (Physics.Raycast(rayOrigin, rayTarget, out hit, (target.transform.position - rayOrigin).magnitude))
+        {
+            Debug.DrawRay(rayOrigin, rayTarget);
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                sight2player = true;
+                //print("Zombie can See Player");
+
+            }
+        }
+        return sight2player;
     }
 }

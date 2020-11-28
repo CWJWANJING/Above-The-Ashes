@@ -1344,6 +1344,7 @@ Transform:
   - {fileID: 171878469991483705}
   - {fileID: 8956766644811396845}
   - {fileID: 3169701386388531781}
+  - {fileID: 1355670655225920080}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 178.77, z: 0}
@@ -1419,6 +1420,8 @@ MonoBehaviour:
   maxSpeed: 0.5
   speed: 0
   BehState: 0
+  eye: {fileID: 7800086790377961792}
+  sight2player: 0
 --- !u!54 &5846841501569714225
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2752,6 +2755,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8250696508292724308}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7800086790377961792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1355670655225920080}
+  m_Layer: 0
+  m_Name: VitualEye
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1355670655225920080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800086790377961792}
+  m_LocalRotation: {x: -0, y: -0.9999424, z: 0, w: 0.010734702}
+  m_LocalPosition: {x: 0.02, y: 1.681, z: 0.212}
+  m_LocalScale: {x: 0.99999964, y: 1, z: 0.99999964}
+  m_Children: []
+  m_Father: {fileID: 2067347076167116682}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8318436781640371572
 GameObject:
