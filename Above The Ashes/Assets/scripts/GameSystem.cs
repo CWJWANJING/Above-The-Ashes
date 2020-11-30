@@ -11,12 +11,14 @@ public class GameSystem : MonoBehaviour
     public AudioSource ads_short;
     public AudioSource ads_long;
 
+    public bool IsDead = false;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        IsDead = false;
     }
 
     // Update is called once per frame
@@ -31,8 +33,9 @@ public class GameSystem : MonoBehaviour
         if (hp_temp <= 0)
         {
             player.healthPoint = 0;
-            DeadMessage.SetActive(true);
             ads_long.Play();
+            IsDead = true;            
+            DeadMessage.SetActive(true);
             this.Invoke("Reset", 3);
 
         }
