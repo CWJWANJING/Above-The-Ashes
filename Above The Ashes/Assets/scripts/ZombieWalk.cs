@@ -60,8 +60,7 @@ public class ZombieWalk : MonoBehaviour
             if(BehState <= 0.5) {
                 BehState = (float)0.5;    
             }
-            print(BehState);
-            speed = maxSpeed * (float)0.6;
+            speed = maxSpeed;
         }
         else if (zombie.GetComponent<EnemyState>().isAttack
             && !zombie.GetComponent<EnemyState>().isDead)
@@ -93,7 +92,8 @@ public class ZombieWalk : MonoBehaviour
         Vector3 rayOrigin = eye.transform.position;
         RaycastHit hit;
         Vector3 rayTarget = (target.transform.position - rayOrigin).normalized;
-        if (Physics.Raycast(rayOrigin, rayTarget, out hit, (target.transform.position - rayOrigin).magnitude))
+        int layerMask = 9 | 10;
+        if (Physics.Raycast(rayOrigin, rayTarget, out hit,(target.transform.position - rayOrigin).magnitude, layerMask))
         {
             Debug.DrawRay(rayOrigin, rayTarget);
             if (hit.collider.gameObject.tag == "Player")
@@ -105,4 +105,14 @@ public class ZombieWalk : MonoBehaviour
         }
         return sight2player;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        print(collision.gameObject.layer);
+        if (collision.gameObject.layer == 9)
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
 }
