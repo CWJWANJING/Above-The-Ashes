@@ -108,7 +108,6 @@ public class ZombieWalk : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        print(collision.gameObject.layer);
         if (collision.gameObject.layer == 9)
         {
             Destroy(collision.gameObject);
