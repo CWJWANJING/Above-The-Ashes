@@ -17,10 +17,11 @@ namespace playerController
         public virtual void UpdateAnimator()
         {
             GameObject gs = GameObject.FindGameObjectWithTag("GS");
+            GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
 
             if (animator == null || !animator.enabled) return;
 
-            animator.SetBool(AnimatorParameters.IsStrafing, isStrafing); ;
+            animator.SetBool(AnimatorParameters.IsStrafing, camera.GetComponent<TPSCamera>().isAiming);
             animator.SetBool(AnimatorParameters.IsSprinting, isSprinting);
             animator.SetBool(AnimatorParameters.IsGrounded, isGrounded);
             animator.SetFloat(AnimatorParameters.GroundDistance, groundDistance);

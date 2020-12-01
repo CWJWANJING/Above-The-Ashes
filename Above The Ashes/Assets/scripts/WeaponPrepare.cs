@@ -10,6 +10,7 @@ public class WeaponPrepare : MonoBehaviour
     private GameObject player;
     public GameObject weapon_ready;
     public GameObject weapon_notR;
+    public GameObject fire_PT;
     void Start()
     {
 
@@ -30,6 +31,13 @@ public class WeaponPrepare : MonoBehaviour
         else {
             weapon_ready.SetActive(false);
             weapon_notR.SetActive(true);
+        }
+
+        if (player.GetComponent<PlayerSystem>().isShoot) {
+            fire_PT.SetActive(true);
+        }
+        else {
+            fire_PT.SetActive(false);
         }
 
     }

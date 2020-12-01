@@ -34,6 +34,7 @@ public class PlayerSystem : MonoBehaviour
     public GameObject firePoint;
 
     public Boolean isAttack = false;
+    public Boolean isShoot = false;
 
     public static bool gamePause = false;
     public GameObject PauseMenuUI;
@@ -75,9 +76,14 @@ public class PlayerSystem : MonoBehaviour
         }
 
         shootTimer += Time.deltaTime;
-        if ((shootTimer > shootTimeInterval) && isAttack && clip != 0 && TPSC.isAiming) {
+        if ((shootTimer > shootTimeInterval) && isAttack && clip != 0 && TPSC.isAiming)
+        {
             fire();
+            isShoot = true;
             shootTimer = 0;
+        }
+        else {
+            isShoot = false;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
