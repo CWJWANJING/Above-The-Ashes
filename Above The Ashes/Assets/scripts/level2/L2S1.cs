@@ -55,11 +55,11 @@ public class L2S1 : MonoBehaviour
 		}
 		if(trigger)
 		{
-		    print(trigger);
+		    //print(trigger);
 			ActionA();
 		}
 		else{
-			print(trigger);
+			//print(trigger);
 			ActionB();
 		}
     }
