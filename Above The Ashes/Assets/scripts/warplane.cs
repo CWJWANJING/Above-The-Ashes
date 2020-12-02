@@ -30,7 +30,6 @@ public class warplane : MonoBehaviour
 
     void pauseAnimationEvent()
     {
-      Debug.Log("pause");
       anim.enabled = false;
     }
 }

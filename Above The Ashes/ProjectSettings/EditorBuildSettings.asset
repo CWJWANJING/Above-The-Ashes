@@ -4,4 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Main.unity
+    guid: 163adec682b5ccd4c8dbb7766c20f3fb
+  - enabled: 0
+    path: Assets/Scenes/AboveTheAshes.unity
+    guid: d41694677e2f58f4c951802229df46a5
+  m_configObjects: {}
