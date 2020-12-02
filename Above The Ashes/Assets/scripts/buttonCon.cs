@@ -10,7 +10,7 @@ public class buttonCon : MonoBehaviour
 
     void Start()
     {
-      Debug.Log("Start.");
+      //Debug.Log("Start.");
       hintImage.gameObject.SetActive(false);
     }
 
