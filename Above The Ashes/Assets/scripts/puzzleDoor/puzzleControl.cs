@@ -17,7 +17,9 @@ public class puzzleControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(images[0].rotation.z == 0 &&
+        GameObject puzzle = GameObject.FindGameObjectWithTag("Puzzle");
+
+        if (images[0].rotation.z == 0 &&
          images[1].rotation.z == 0 &&
          images[2].rotation.z == 0 &&
          images[3].rotation.z == 0 &&
@@ -31,6 +33,7 @@ public class puzzleControl : MonoBehaviour
          images[11].rotation.z == 0
          )
          {
+            puzzle.GetComponent<showPuzzleWeapon>().playPuzzle = false;
            win = true;
            Debug.Log("Win.");
          }

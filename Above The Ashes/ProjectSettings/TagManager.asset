@@ -7,6 +7,9 @@ TagManager:
   - Shootable
   - Weapon
   - Fire
+  - Zombie
+  - GS
+  - Puzzle
   layers:
   - Default
   - TransparentFX

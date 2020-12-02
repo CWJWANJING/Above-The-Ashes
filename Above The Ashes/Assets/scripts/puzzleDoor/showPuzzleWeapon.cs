@@ -20,8 +20,10 @@ public class showPuzzleWeapon : MonoBehaviour
 
   void Update()
     {
-      // if player is closenough with this object
-      if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 3)
+        GameObject puzzle = GameObject.FindGameObjectWithTag("Puzzle");
+
+        // if player is closenough with this object
+        if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 3)
       {
         // if player already solved the puzzle
         if (puzzleControl.win){
@@ -60,7 +62,8 @@ public class showPuzzleWeapon : MonoBehaviour
             // Cursor.visible = false;
             // image will disappear
             puzzleImage.gameObject.SetActive(false);
-            // everything will back to normal, unfrozen
+            puzzle.GetComponent<showPuzzleWeapon>().playPuzzle = false;
+                    // everything will back to normal, unfrozen
             Time.timeScale = 1f;
           }
         }

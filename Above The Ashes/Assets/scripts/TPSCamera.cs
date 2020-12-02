@@ -9,6 +9,7 @@ public class TPSCamera : MonoBehaviour
     public Transform player;//玩家物体的Transform
     public Vector3 playerOffset;//本物体与玩家位置的偏移向量
     public GameObject pistol;
+    public GameObject puzzle;
 
     public float rotateSpeed;//控制旋转速度
     public float moveSpeed;//控制跟随的平滑度
@@ -40,6 +41,7 @@ public class TPSCamera : MonoBehaviour
     {
         animator = player.gameObject.GetComponent<Animator>();
         isSprint = animator.GetBool("IsSprinting");
+        puzzle = GameObject.FindGameObjectWithTag("Puzzle");
         if (isSprint)
         {
             isAiming = false;
@@ -63,7 +65,13 @@ public class TPSCamera : MonoBehaviour
 
         //}
         SetPosAndRot();//设置视角旋转后的位置和朝向
-        Cursor.visible = false;//隐藏鼠标
+        if (puzzle.GetComponent<showPuzzleWeapon>().playPuzzle)
+        {
+            Cursor.visible = true;//隐藏鼠标
+        }
+        else {
+            Cursor.visible = false;//隐藏鼠标
+        }
     }
 
     /// <summary>
