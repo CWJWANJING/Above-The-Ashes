@@ -27,10 +27,6 @@ public class L2S1 : MonoBehaviour
     {
        if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 1.5){
 			UIObject.SetActive(true);
-			
-				
-			
-			
 			if(Input.GetKey("f")){
 				//print(trigger);
 				shootTimer += Time.deltaTime;
@@ -47,8 +43,6 @@ public class L2S1 : MonoBehaviour
 				
 				
 			}
-
-				//door3open = true;
 
 		}else{
         UIObject.SetActive(false);

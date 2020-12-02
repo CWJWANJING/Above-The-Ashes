@@ -13,15 +13,22 @@ public class Level1switchD : MonoBehaviour
 	public GameObject Door2;
 	public GameObject Door3;
 	public GameObject Door4;
-	private Vector3 offset = new Vector3 (0.0f, 1.0f,0.0f);
-	private bool trigger4;
-	private int num = 0;
+	private Vector3 offset = new Vector3 (0.0f, 2.0f,0.0f);
+	private bool trigger;
+	private double shootTimer = 0;
+    private double shootTimeInterval = 0.1;
+	
+	private double Timer2 = 0;
+	private double TimeInterval2 = 1.5;
+	
+	private double Timer3 = 0;
+	private double TimeInterval3 = 1.5;
 
     void Start()
     {
         // at first the text should not display
         UIObject.SetActive(false);
-		trigger4 = false;
+		trigger = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -33,61 +40,75 @@ public class Level1switchD : MonoBehaviour
             UIObject.SetActive(true);
         }
     }
-
-    void OnTriggerExit(Collider other)
-    {
-        // when player leaves the trigger, text disappear
-        UIObject.SetActive(false);
-    }
-
-	void Update()
+	
+		void Update()
     {
        if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 1.5){
+			UIObject.SetActive(true);
 			if(Input.GetKey("f")){
 				//print(trigger);
-				trigger4 = true;
-				//print("B");
-				num = 0;
+				shootTimer += Time.deltaTime;
+				if (shootTimer > shootTimeInterval) {
+					if(trigger){
+					trigger = false;
+					print("Change false");
+					Timer3 = 0;
+				}
+				else{
+					print("Change true");
+					trigger = true;
+					Timer2 = 0;
+				}
+					shootTimer = 0;
+				}
+				
+				
+				
 			}
-	   }
-	   
+
+		}else{
+        UIObject.SetActive(false);
+		}
+		if(trigger)
+		{
+		    //print(trigger);
+			Timer2 += Time.deltaTime;
+			if (Timer2 < TimeInterval2) {
+				print("A");
+				ActionA();
+			}	
+			
+		}
+		else{
+			Timer3 += Time.deltaTime;
+			if (Timer3 < TimeInterval3) {
+				print("B");
+				//ActionB();
+			}
+			
+		}
     }
 
-	void LateUpdate()
-    {
-      // if player is closenough with this object
-		if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 1.5)
-		{
-			UIObject.SetActive(true);
 
-			//if (Input.GetKey("f"))
-			//{
-        //door2open = false;
-        //door3open = true;
-        //door4open = true;
-			//}
-			if (trigger4)
-			{
 
-				if(Door2.transform.localEulerAngles.y>=90&&Door2.transform.localEulerAngles.y<=180f){
-					Door2.transform.localEulerAngles = Door2.transform.localEulerAngles - offset;
-				}
-				if(Door3.transform.localEulerAngles.y>=90&&Door3.transform.localEulerAngles.y<=180f){
-					Door3.transform.localEulerAngles = Door3.transform.localEulerAngles + offset;
-				}
-				if(Door4.transform.localEulerAngles.y>=90&&Door3.transform.localEulerAngles.y<=180f){
-					Door4.transform.localEulerAngles = Door3.transform.localEulerAngles + offset;
-				}				
-				num++;
-				if (num >=90){
-					trigger4 = false;
-					print("close");
-				}
-			}
-        }
-		else{
-        UIObject.SetActive(false);
+	void ActionA(){
+		
+
+		if(Door2.transform.localEulerAngles.y <= 183f&&Door2.transform.localEulerAngles.y > 92f){
+			Door2.transform.localEulerAngles = Door2.transform.localEulerAngles - offset;
+		}
+		
+		if(Door3.transform.localEulerAngles.y >= 87f&&Door3.transform.localEulerAngles.y < 178f){
+			Door3.transform.localEulerAngles = Door3.transform.localEulerAngles + offset;
+		}
+		
+		if(Door4.transform.localEulerAngles.y >= 87f&&Door4.transform.localEulerAngles.y < 178f){
+			Door4.transform.localEulerAngles = Door4.transform.localEulerAngles + offset;
 		}
 		
     }
+  
+
+	
+	
 }
