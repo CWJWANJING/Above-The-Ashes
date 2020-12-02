@@ -46,7 +46,6 @@ public class showPuzzleWeapon : MonoBehaviour
           // if the player press key F
           if (Input.GetKey("f"))
           {
-            Debug.Log("show cursor");
             // puzzle shows, cursor shows
             Cursor.visible = true;
             playPuzzle = true;
