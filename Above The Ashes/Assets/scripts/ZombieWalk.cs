@@ -39,6 +39,7 @@ public class ZombieWalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject gs = GameObject.FindGameObjectWithTag("GS");
         //Animation play
         if (zombie.GetComponent<EnemyState>().dis2Player > zombie.GetComponent<EnemyState>().sight && !zombie.GetComponent<EnemyState>().isDead)
         {
@@ -47,24 +48,23 @@ public class ZombieWalk : MonoBehaviour
         }
         else if (zombie.GetComponent<EnemyState>().dis2Player > zombie.GetComponent<EnemyState>().sight / 2
             && zombie.GetComponent<EnemyState>().dis2Player < zombie.GetComponent<EnemyState>().sight
-            && !zombie.GetComponent<EnemyState>().isDead && ray2Player())
+            && !zombie.GetComponent<EnemyState>().isDead && ray2Player() && !gs.GetComponent<GameSystem>().IsDead)
         {
             BehState = (float)(zombie.GetComponent<EnemyState>().dis2Player / (zombie.GetComponent<EnemyState>().sight / 2));
             speed = maxSpeed* (float)0.2;
         }
         else if (zombie.GetComponent<EnemyState>().dis2Player < zombie.GetComponent<EnemyState>().sight / 2
             && zombie.GetComponent<EnemyState>().dis2Player != zombie.GetComponent<EnemyState>().range
-            && !zombie.GetComponent<EnemyState>().isDead && ray2Player())
+            && !zombie.GetComponent<EnemyState>().isDead && ray2Player() && !gs.GetComponent<GameSystem>().IsDead)
         {
             BehState = (float)(zombie.GetComponent<EnemyState>().dis2Player / (zombie.GetComponent<EnemyState>().sight / 2));
             if(BehState <= 0.5) {
                 BehState = (float)0.5;    
             }
-            print(BehState);
-            speed = maxSpeed * (float)0.6;
+            speed = maxSpeed;
         }
         else if (zombie.GetComponent<EnemyState>().isAttack
-            && !zombie.GetComponent<EnemyState>().isDead)
+            && !zombie.GetComponent<EnemyState>().isDead && !gs.GetComponent<GameSystem>().IsDead)
         {
             BehState = 0;
             speed = 0;
@@ -84,7 +84,12 @@ public class ZombieWalk : MonoBehaviour
             BehState = 0;
             speed = 0;
         }
-        
+        if (gs.GetComponent<GameSystem>().IsDead)
+        {
+            BehState = 0;
+            speed = 0;
+        }
+
     }
 
     private bool ray2Player()
@@ -93,7 +98,8 @@ public class ZombieWalk : MonoBehaviour
         Vector3 rayOrigin = eye.transform.position;
         RaycastHit hit;
         Vector3 rayTarget = (target.transform.position - rayOrigin).normalized;
-        if (Physics.Raycast(rayOrigin, rayTarget, out hit, (target.transform.position - rayOrigin).magnitude))
+        int layerMask = 9 | 10;
+        if (Physics.Raycast(rayOrigin, rayTarget, out hit,(target.transform.position - rayOrigin).magnitude, layerMask))
         {
             Debug.DrawRay(rayOrigin, rayTarget);
             if (hit.collider.gameObject.tag == "Player")
@@ -105,4 +111,13 @@ public class ZombieWalk : MonoBehaviour
         }
         return sight2player;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
 }

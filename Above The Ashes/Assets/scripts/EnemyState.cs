@@ -36,14 +36,14 @@ public class EnemyState : MonoBehaviour
     {
         dis2Player = (transform.position - gs.player.gameObject.transform.position).magnitude;
         shootTimer += Time.deltaTime;
-        if (dis2Player <= range)
+        if (dis2Player <= range && !gs.IsDead)
         {
             wantAttack = true;
         }
         else {
             wantAttack = false;
         }
-        if ((shootTimer > shootTimeInterval) && wantAttack && dis2Player <= range && !isDead)
+        if ((shootTimer > shootTimeInterval) && wantAttack && dis2Player <= range && !isDead && !gs.IsDead)
         {
             shootTimer = 0;            
             isAttack = true;

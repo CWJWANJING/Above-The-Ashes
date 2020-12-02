@@ -63,7 +63,7 @@ public class TPSCamera : MonoBehaviour
 
         //}
         SetPosAndRot();//设置视角旋转后的位置和朝向
-        // Cursor.visible = false;//隐藏鼠标
+        Cursor.visible = false;//隐藏鼠标
     }
 
     /// <summary>

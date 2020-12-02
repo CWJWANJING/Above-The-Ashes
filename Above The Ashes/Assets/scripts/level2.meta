@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Above The Ashes/Assets/scripts/level2.meta
 guid: 526a42341ff0d474b8b4f252f9073336
 folderAsset: yes
+=======
+guid: 9488a2e44fb38c84ca6c1107266bcb1c
+>>>>>>> f35631cfb406549c53bc7d0e0f5686e815651063:Above The Ashes/Assets/Scenes/Prototype.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

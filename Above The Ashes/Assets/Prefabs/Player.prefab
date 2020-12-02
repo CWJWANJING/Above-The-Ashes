@@ -2766,8 +2766,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1689195654099424312}
   - component: {fileID: 1689195654099424313}
-  - component: {fileID: 1689195654099424314}
-  - component: {fileID: 1689195654099424315}
   - component: {fileID: 1689195654099424316}
   - component: {fileID: 1689195654099424317}
   - component: {fileID: 3034156786198754351}
@@ -2815,77 +2813,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1689195654099424314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689195654099424318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73fbf3aa05f6be24780438449f505aa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useRootMotion: 0
-  rotateByWorld: 0
-  useContinuousSprint: 1
-  sprintOnlyFree: 1
-  locomotionType: 0
-  freeSpeed:
-    movementSmooth: 6
-    animationSmooth: 0.2
-    rotationSpeed: 16
-    walkByDefault: 0
-    rotateWithCamera: 0
-    walkSpeed: 2
-    runningSpeed: 4
-    sprintSpeed: 6
-  strafeSpeed:
-    movementSmooth: 6
-    animationSmooth: 0.2
-    rotationSpeed: 16
-    walkByDefault: 0
-    rotateWithCamera: 1
-    walkSpeed: 2
-    runningSpeed: 4
-    sprintSpeed: 6
-  jumpWithRigidbodyForce: 0
-  jumpAndRotate: 1
-  jumpTimer: 0.3
-  jumpHeight: 4
-  airSpeed: 5
-  airSmooth: 6
-  extraGravity: -10
-  limitFallVelocity: -15
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  groundMinDistance: 0.25
-  groundMaxDistance: 0.5
-  slopeLimit: 45
---- !u!114 &1689195654099424315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689195654099424318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5deb9ff5611cb9d4596d397ac57ee8c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalInput: Horizontal
-  verticallInput: Vertical
-  jumpInput: 32
-  strafeInput: 324
-  sprintInput: 304
-  rotateCameraXInput: Mouse X
-  rotateCameraYInput: Mouse Y
-  cc: {fileID: 0}
-  tpCamera: {fileID: 0}
-  cameraMain: {fileID: 0}
 --- !u!54 &1689195654099424316
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2930,16 +2857,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoint: 10
   ammo: 10
+  clip: 0
+  max_clip: 25
   attackPoint: 5
   range: 20
   bulletSpeed: 20
   shootSpeed: 1
+  ReloadSpeed: 1
   PlayerUI: {fileID: 0}
   HitMessage: {fileID: 0}
   gs: {fileID: 0}
   TPSC: {fileID: 0}
   ads: {fileID: 0}
   ads_suffer: {fileID: 0}
+  Reload_eff: {fileID: 0}
   firePoint: {fileID: 3034156785310291624}
   isAttack: 0
   PauseMenuUI: {fileID: 0}
