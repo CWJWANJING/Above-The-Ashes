@@ -44,6 +44,9 @@ public class showPuzzleWeapon : MonoBehaviour
           // if the player press key F
           if (Input.GetKey("f"))
           {
+            Debug.Log("show cursor");
+            // puzzle shows, cursor shows
+            Cursor.visible = true;
             playPuzzle = true;
             // other things will stop
             Time.timeScale = 0f;
@@ -53,6 +56,8 @@ public class showPuzzleWeapon : MonoBehaviour
           // if key q is pressed
           if (Input.GetKey("q"))
           {
+            // // puzzle disappear, cursor disappers
+            // Cursor.visible = false;
             // image will disappear
             puzzleImage.gameObject.SetActive(false);
             // everything will back to normal, unfrozen
