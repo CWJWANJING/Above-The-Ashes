@@ -14,18 +14,18 @@ public class Level1switchC : MonoBehaviour
 	public GameObject Door2;
 	public GameObject Door3;
 	public GameObject Door4;
-	
+
 	private Vector3 offset = new Vector3 (0.0f, 2.0f,0.0f);
 	private bool trigger;
 	private double shootTimer = 0;
     private double shootTimeInterval = 0.1;
-	
+
 	private double Timer2 = 0;
 	private double TimeInterval2 = 1.5;
-	
+
 	private double Timer3 = 0;
 	private double TimeInterval3 = 1.5;
-	
+
 
     void Start()
     {
@@ -55,9 +55,9 @@ public class Level1switchC : MonoBehaviour
 				}
 					shootTimer = 0;
 				}
-				
-				
-				
+
+
+
 			}
 
 		}else{
@@ -68,43 +68,43 @@ public class Level1switchC : MonoBehaviour
 		    //print(trigger);
 			Timer2 += Time.deltaTime;
 			if (Timer2 < TimeInterval2) {
-				print("A");
+				// print("A");
 				ActionA();
-			}	
-			
+			}
+
 		}
 		else{
 			Timer3 += Time.deltaTime;
 			if (Timer3 < TimeInterval3) {
-				print("B");
+				// print("B");
 				//ActionB();
 			}
-			
+
 		}
     }
 
 
 
 	void ActionA(){
-		
+
 		if(Door1.transform.localEulerAngles.y >= 87f&&Door1.transform.localEulerAngles.y < 178f){
 			Door1.transform.localEulerAngles = Door1.transform.localEulerAngles + offset;
 		}
-		
+
 		if(Door2.transform.localEulerAngles.y <= 183f&&Door2.transform.localEulerAngles.y > 92f){
 			Door2.transform.localEulerAngles = Door2.transform.localEulerAngles - offset;
 		}
-		
+
 		if(Door3.transform.localEulerAngles.y <= 183f&&Door3.transform.localEulerAngles.y > 92f){
 			Door3.transform.localEulerAngles = Door3.transform.localEulerAngles - offset;
 		}
-		
+
 		if(Door4.transform.localEulerAngles.y <= 183f&&Door4.transform.localEulerAngles.y > 92f){
 			Door4.transform.localEulerAngles = Door4.transform.localEulerAngles - offset;
 		}
-		
+
     }
-  
+
 
 
 }
