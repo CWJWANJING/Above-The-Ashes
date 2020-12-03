@@ -36,7 +36,7 @@ public class PlayerSystem : MonoBehaviour
     public Boolean isAttack = false;
     public Boolean isShoot = false;
 
-    public static bool gamePause = false;
+    public bool gamePause = false;
     public GameObject PauseMenuUI;
 
     void Start()
