@@ -11,13 +11,13 @@ namespace playerController
         public const float walkSpeed = 0.5f;
         public const float runningSpeed = 1f;
         public const float sprintSpeed = 1.5f;
+        public GameObject camera;
 
         #endregion
 
         public virtual void UpdateAnimator()
         {
             GameObject gs = GameObject.FindGameObjectWithTag("GS");
-            GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
 
             if (animator == null || !animator.enabled) return;
 

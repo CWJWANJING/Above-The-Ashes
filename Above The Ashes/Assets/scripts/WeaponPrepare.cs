@@ -6,7 +6,7 @@ public class WeaponPrepare : MonoBehaviour
 {
     // Start is called before the first frame update
     private GameObject gs;
-    private GameObject camera;
+    public GameObject camera;
     private GameObject player;
     public GameObject weapon_ready;
     public GameObject weapon_notR;
@@ -21,7 +21,6 @@ public class WeaponPrepare : MonoBehaviour
     {
         gs = GameObject.FindGameObjectWithTag("GS");
         player = GameObject.FindGameObjectWithTag("Player");
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
 
         if (camera.GetComponent<TPSCamera>().isAiming)
         {

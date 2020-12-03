@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3441100740401528507}
   m_Layer: 0
   m_Name: TPSCameraParent
-  m_TagString: Untagged
+  m_TagString: MCP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   cam: {fileID: 3441100739866713418}
   player: {fileID: 0}
   playerOffset: {x: 0, y: 0, z: 0}
-  pistol: {fileID: 0}
+  puzzle: {fileID: 0}
   rotateSpeed: 500
   moveSpeed: 20
   minAngle: -40

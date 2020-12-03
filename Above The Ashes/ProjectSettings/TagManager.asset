@@ -10,6 +10,7 @@ TagManager:
   - Zombie
   - GS
   - Puzzle
+  - MCP
   layers:
   - Default
   - TransparentFX
