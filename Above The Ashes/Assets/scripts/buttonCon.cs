@@ -16,7 +16,7 @@ public class buttonCon : MonoBehaviour
 
     void OnTriggerEnter()
     {
-      Debug.Log("Enter.");
+      //Debug.Log("Enter.");
       hintImage.gameObject.SetActive(true);
     }
 
@@ -26,4 +26,5 @@ public class buttonCon : MonoBehaviour
         // when player leaves the trigger, text disappear
       hintImage.gameObject.SetActive(false);
     }
+	
 }
