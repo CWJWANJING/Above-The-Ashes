@@ -6,6 +6,7 @@ public class puzzleAutodoor : MonoBehaviour
 {
 
     Animator anim;
+    public PlayerSystem ps;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,11 @@ public class puzzleAutodoor : MonoBehaviour
       {
         anim.SetTrigger("openDoor");
       }
+        if (puzzleControl.win_state) {
+            ps.ammo = 100;
+            puzzleControl.win_state = false;
+            this.enabled = false;
+        }
     }
 
     void pauseAnimationEvent()

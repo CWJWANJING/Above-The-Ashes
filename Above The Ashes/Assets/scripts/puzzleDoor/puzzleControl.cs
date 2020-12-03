@@ -7,6 +7,7 @@ public class puzzleControl : MonoBehaviour
 
     public Transform[] images;
     public static bool win = false;
+    public static bool win_state = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class puzzleControl : MonoBehaviour
          {
             puzzle.GetComponent<showPuzzleWeapon>().playPuzzle = false;
            win = true;
+            win_state = true;
            Debug.Log("Win.");
          }
     }
