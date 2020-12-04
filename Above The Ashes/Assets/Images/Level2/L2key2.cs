@@ -24,12 +24,15 @@ public class L2key2 : MonoBehaviour
     {
       // tell user to press f to pick up
       UIObject.SetActive(true);
-      if (Input.GetKey("f"))
+      if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 2)
       {
-        UIObject.SetActive(false);
-        key2.SetActive(false);
-        key2Found = true;
-        // L2exitContr.N++;
+        if (Input.GetKey("f"))
+        {
+          UIObject.SetActive(false);
+          key2.SetActive(false);
+          key2Found = true;
+          // L2exitContr.N++;
+        }
       }
     }
     else{
