@@ -11,6 +11,7 @@ TagManager:
   - GS
   - Puzzle
   - MCP
+  - HidUI
   layers:
   - Default
   - TransparentFX

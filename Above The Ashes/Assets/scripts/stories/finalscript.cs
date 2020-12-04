@@ -38,12 +38,14 @@ public class finalscript : MonoBehaviour
 
     void Update()
     {
-       // print(trigger);
+		// print(trigger);
+		GameObject hidui = GameObject.FindGameObjectWithTag("HidUI");
 	   if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 3){
   			UIObject.SetActive(true);
   			if(Input.GetKey("f")){
   				trigger = true;
-  				shootTimer = 0;
+				hidui.SetActive(false);
+				shootTimer = 0;
   				player.SetActive(false);
   			}
 
