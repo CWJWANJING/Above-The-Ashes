@@ -24,7 +24,7 @@ public class L2key3 : MonoBehaviour
     {
       // tell user to press f to pick up
       UIObject.SetActive(true);
-      if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 2)
+      if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 1)
       {
         if (Input.GetKey("f"))
         {
