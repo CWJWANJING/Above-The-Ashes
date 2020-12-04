@@ -5,42 +5,47 @@ using UnityEngine;
 public class finalscript : MonoBehaviour
 {
     public GameObject UIObject;
-	public GameObject img;
-	public GameObject s1;public GameObject s2;public GameObject s3;public GameObject s4;public GameObject s5;
-	public GameObject img1;public GameObject img2;public GameObject img3;public GameObject img4;
-	public float moveSpeed;
+  	public GameObject img;
+  	public GameObject s1;public GameObject s2;public GameObject s3;public GameObject s4;public GameObject s5;
+  	public GameObject img1;public GameObject img2;public GameObject img3;public GameObject img4;
+  	public float moveSpeed;
     public GameObject plane;
-	public GameObject player;
-	public double t1;
-	public double t2;
-	public double t3;
-	
-	private Vector3 offset = new Vector3 (0.05f, 0.03f,0.0f);
-	private Vector3 offset1 = new Vector3 (-1f, 1f,0.0f);
-	private bool trigger;
-	private double shootTimer = 0;
-	private double TimeInterval1 = 4.0;
+  	public GameObject player;
+  	public double t1;
+  	public double t2;
+  	public double t3;
+
+  	private Vector3 offset = new Vector3 (0.05f, 0.03f,0.0f);
+  	private Vector3 offset1 = new Vector3 (-1f, 1f,0.0f);
+  	private bool trigger;
+  	private double shootTimer = 0;
+  	private double TimeInterval1 = 4.0;
+
+    // end of game is false
+    public static bool eogmenuTrigger = false;
+
+    public GameObject eogmenu;
 
 
     void Start()
     {
         // at first the text should not display
         UIObject.SetActive(false);
-		trigger = false;
+		    trigger = false;
 
     }
 
 
     void Update()
     {
-       print(trigger);
+       // print(trigger);
 	   if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 3){
-			UIObject.SetActive(true);
-			if(Input.GetKey("f")){
-				trigger = true;
-				shootTimer = 0;
-				player.SetActive(false);
-			}
+  			UIObject.SetActive(true);
+  			if(Input.GetKey("f")){
+  				trigger = true;
+  				shootTimer = 0;
+  				player.SetActive(false);
+  			}
 
 		}else{
         UIObject.SetActive(false);
@@ -89,13 +94,20 @@ public class finalscript : MonoBehaviour
 					img4.SetActive(false);
 					s5.SetActive(true);
 				}
+      if (shootTimer > (TimeInterval1+0.2+t1*3+t2+t3*4+t1*2)&&shootTimer<=(TimeInterval1+0.2+t1*3+t2+t3*4+t1*3)) {
+          s4.SetActive(false);
+          s5.SetActive(false);
+          Debug.Log("eog is true");
+          eogmenu.SetActive(true);
+          eogmenuTrigger = true;
+        }
 		}
-		
+
     }
 
 
 	void ActionA(){
-		print("move");
+		// print("move");
 		transform.position = transform.position + offset * moveSpeed;
 		//transform.Translate(offset * Time.deltaTime);
     }

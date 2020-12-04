@@ -69,6 +69,9 @@ public class TPSCamera : MonoBehaviour
         else if (player.GetComponent<PlayerSystem>().gamePause) {
             Cursor.visible = true;//Display
         }
+        else if (finalscript.eogmenuTrigger == true) {
+            Cursor.visible = true;//Display
+        }
         else
         {
             Cursor.visible = false;//隐藏鼠标
