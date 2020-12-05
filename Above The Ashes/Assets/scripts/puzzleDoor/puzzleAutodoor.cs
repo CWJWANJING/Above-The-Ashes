@@ -21,7 +21,7 @@ public class puzzleAutodoor : MonoBehaviour
         anim.SetTrigger("openDoor");
       }
         if (puzzleControl.win_state) {
-            ps.ammo = 100;
+            ps.ammo = 25;
             puzzleControl.win_state = false;
             this.enabled = false;
         }
