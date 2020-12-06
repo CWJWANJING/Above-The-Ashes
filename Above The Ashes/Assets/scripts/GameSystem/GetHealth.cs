@@ -8,6 +8,7 @@ public class GetHealth : MonoBehaviour
 {
     public Text ui;
 
+    // Timer initialization
     private double shootSpeed = 1;
     private double shootTimer = 0;
     private double shootTimeInterval = 0;
@@ -27,13 +28,16 @@ public class GetHealth : MonoBehaviour
     void Update()
     {
         shootTimer += Time.deltaTime;
+        // Decision condition of get
         if (Vector3.Distance(gameObject.transform.position, target.transform.position) < 1.5)
         {
             if (Input.GetKey("f") && (shootTimer > shootTimeInterval))
+            // Decision condition of get
+            // Avoid get ammo in 1 mins
             {
-                target.GetComponent<PlayerSystem>().healthPoint += 10;
+                target.GetComponent<PlayerSystem>().healthPoint += 10;// Set health
                 print("Get Health");
-                shootTimer = 0;
+                shootTimer = 0;// reset timer
 
             }
         }
@@ -41,6 +45,7 @@ public class GetHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Notice of operation
         if (collision.gameObject.tag == "Player")
         {
             ui.text = "Press F to Health!";
@@ -48,6 +53,7 @@ public class GetHealth : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
+        // reset of notice
         if (collision.gameObject.tag == "Player")
         {
             ui.text = "";

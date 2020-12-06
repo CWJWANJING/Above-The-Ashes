@@ -10,13 +10,13 @@ public class PlayerMotor : MonoBehaviour
 
     [Header("- Movement")]
 
-    [Tooltip("Turn off if you have 'in place' animations and use this values above to move the character, or use with root motion as extra speed")]
+    //Turn off if you have 'in place' animations and use this values above to move the character, or use with root motion as extra speed
     public bool useRootMotion = false;
-    [Tooltip("Use this to rotate the character using the World axis, or false to use the camera axis - CHECK for Isometric Camera")]
+    //Use this to rotate the character using the World axis, or false to use the camera axis - CHECK for Isometric Camera
     public bool rotateByWorld = false;
-    [Tooltip("Check This to use sprint on press button to your Character run until the stamina finish or movement stops\nIf uncheck your Character will sprint as long as the SprintInput is pressed or the stamina finishes")]
+    //Check This to use sprint on press button to your Character run until the stamina finish or movement stops\nIf uncheck your Character will sprint as long as the SprintInput is pressed or the stamina finishes
     public bool useContinuousSprint = true;
-    [Tooltip("Check this to sprint always in free movement")]
+    //Check this to sprint always in free movement
     public bool sprintOnlyFree = true;
     public enum LocomotionType
     {
@@ -26,35 +26,35 @@ public class PlayerMotor : MonoBehaviour
     }
     public LocomotionType locomotionType = LocomotionType.FreeWithStrafe;
 
-    public vMovementSpeed freeSpeed, strafeSpeed;
+    public MovementSpeed freeSpeed, strafeSpeed;
 
     [Header("- Airborne")]
 
-    [Tooltip("Use the currently Rigidbody Velocity to influence on the Jump Distance")]
+    //Use the currently Rigidbody Velocity to influence on the Jump Distance
     public bool jumpWithRigidbodyForce = false;
-    [Tooltip("Rotate or not while airborne")]
+    //Rotate or not while airborne
     public bool jumpAndRotate = true;
-    [Tooltip("How much time the character will be jumping")]
+    //How much time the character will be jumping
     public float jumpTimer = 0.3f;
-    [Tooltip("Add Extra jump height, if you want to jump only with Root Motion leave the value with 0.")]
+    //Add Extra jump height, if you want to jump only with Root Motion leave the value with 0.
     public float jumpHeight = 4f;
 
-    [Tooltip("Speed that the character will move while airborne")]
+    //Speed that the character will move while airborne
     public float airSpeed = 5f;
-    [Tooltip("Smoothness of the direction while airborne")]
+    //Smoothness of the direction while airborne
     public float airSmooth = 6f;
-    [Tooltip("Apply extra gravity when the character is not grounded")]
+    //Apply extra gravity when the character is not grounded
     public float extraGravity = -10f;
     [HideInInspector]
     public float limitFallVelocity = -15f;
 
     [Header("- Ground")]
-    [Tooltip("Layers that the character can walk on")]
+    //Layers that the character can walk on
     public LayerMask groundLayer = 1 << 0;
-    [Tooltip("Distance to became not grounded")]
+    //Distance to became not grounded
     public float groundMinDistance = 0.25f;
     public float groundMaxDistance = 0.5f;
-    [Tooltip("Max angle to walk")]
+    //Max angle to walk
     [Range(30, 80)] public float slopeLimit = 75f;
     #endregion
 
@@ -157,7 +157,7 @@ public class PlayerMotor : MonoBehaviour
 
     #region Locomotion
 
-    public virtual void SetControllerMoveSpeed(vMovementSpeed speed)
+    public virtual void SetControllerMoveSpeed(MovementSpeed speed)
     {
         if (speed.walkByDefault)
             moveSpeed = Mathf.Lerp(moveSpeed, isSprinting ? speed.runningSpeed : speed.walkSpeed, speed.movementSmooth * Time.deltaTime);
@@ -236,6 +236,7 @@ public class PlayerMotor : MonoBehaviour
     #endregion
 
     #region Jump Methods
+        // This part reference 3-rd part codes
 
     protected virtual void ControlJumpBehaviour()
     {
@@ -381,7 +382,7 @@ public class PlayerMotor : MonoBehaviour
     #endregion
 
     [System.Serializable]
-    public class vMovementSpeed
+    public class MovementSpeed
     {
         [Range(1f, 20f)]
         public float movementSmooth = 6f;

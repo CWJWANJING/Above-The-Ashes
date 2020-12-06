@@ -6,6 +6,7 @@ namespace playerController
 { 
     public class TPPlayerController : PlayerAnimator
     {
+        // Deal with animator root motion
         public virtual void ControlAnimatorRootMotion()
         {
             if (!this.enabled) return;
@@ -20,6 +21,7 @@ namespace playerController
                 MoveCharacter(moveDirection);
         }
 
+        // Deal with locomotion type
         public virtual void ControlLocomotionType()
         {
             if (lockMovement) return;
@@ -40,6 +42,7 @@ namespace playerController
                 MoveCharacter(moveDirection);
         }
 
+        // Deal with control rotation Type
         public virtual void ControlRotationType()
         {
             if (lockRotation) return;
@@ -55,7 +58,7 @@ namespace playerController
                 RotateToDirection(dir);
             }
         }
-
+        // Update Movement Direction
         public virtual void UpdateMoveDirection(Transform referenceTransform = null)
         {
             if (input.magnitude <= 0.01)
@@ -80,6 +83,7 @@ namespace playerController
             }
         }
 
+        //Enable Sprint
         public virtual void Sprint(bool value)
         {
             var sprintConditions = (input.sqrMagnitude > 0.1f && isGrounded &&
@@ -109,11 +113,14 @@ namespace playerController
             }
         }
 
+        // Enable strafe
         public virtual void Strafe()
         {
             isStrafing = !isStrafing;
         }
 
+        // Jump Behavior
+        // Reference 3rd part free codes
         public virtual void Jump()
         {
             // trigger jump behaviour

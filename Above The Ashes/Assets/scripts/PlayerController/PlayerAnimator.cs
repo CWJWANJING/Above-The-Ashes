@@ -7,7 +7,7 @@ namespace playerController
     public class PlayerAnimator : PlayerMotor
     {
         #region Variables                
-
+        //Init players attributes
         public const float walkSpeed = 0.5f;
         public const float runningSpeed = 1f;
         public const float sprintSpeed = 1.5f;
@@ -21,6 +21,7 @@ namespace playerController
 
             if (animator == null || !animator.enabled) return;
 
+            //Set parameters to state machine
             animator.SetBool(AnimatorParameters.IsStrafing, camera.GetComponent<TPSCamera>().isAiming);
             animator.SetBool(AnimatorParameters.IsSprinting, isSprinting);
             animator.SetBool(AnimatorParameters.IsGrounded, isGrounded);
@@ -40,7 +41,8 @@ namespace playerController
             animator.SetFloat(AnimatorParameters.InputMagnitude, stopMove ? 0f : inputMagnitude, isStrafing ? strafeSpeed.animationSmooth : freeSpeed.animationSmooth, Time.deltaTime);
         }
 
-        public virtual void SetAnimatorMoveSpeed(vMovementSpeed speed)
+        // Set speed to animation
+        public virtual void SetAnimatorMoveSpeed(MovementSpeed speed)
         {
             Vector3 relativeInput = transform.InverseTransformDirection(moveDirection);
             verticalSpeed = relativeInput.z;
@@ -55,6 +57,7 @@ namespace playerController
         }
     }
 
+    // Used to store Animator's parameters
     public static partial class AnimatorParameters
     {
         public static int InputHorizontal = Animator.StringToHash("InputHorizontal");

@@ -23,6 +23,7 @@ public class MusicScence : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // Start cheasing music
         if (other.gameObject.tag == "Player") {
             Battle.volume = 1;
             BGM.volume = 0;
@@ -31,6 +32,7 @@ public class MusicScence : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        // Switch it to Normal BGM
         Battle.volume = 0;
         BGM.volume = 1;
     }

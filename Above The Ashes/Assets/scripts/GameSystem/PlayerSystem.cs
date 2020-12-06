@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerSystem : MonoBehaviour
 {
     // Start is called before the first frame update
+    //Player attribute initialization
     public double healthPoint = 10;
     public double ammo = 10;
     public double clip = 0;
@@ -16,6 +17,7 @@ public class PlayerSystem : MonoBehaviour
     public double range = 10;
     public double bulletSpeed = 20;
 
+    // Timer initialization
     public double shootSpeed = 1;
     public double ReloadSpeed = 1;
     private double shootTimer = 0;
@@ -26,6 +28,7 @@ public class PlayerSystem : MonoBehaviour
     public Text PlayerUI;
     public Text HitMessage;
 
+    // Operation object initialization
     public GameSystem gs;
     public TPSCamera TPSC;
     public AudioSource ads;
@@ -33,6 +36,7 @@ public class PlayerSystem : MonoBehaviour
     public AudioSource Reload_eff;
     public GameObject firePoint;
 
+    // State initialization
     public Boolean isAttack = false;
     public Boolean isShoot = false;
 
@@ -43,6 +47,7 @@ public class PlayerSystem : MonoBehaviour
     {
         PlayerUI.text = "";
         HitMessage.text = "";
+        // Filling judgment after getting bullet
         if ((int)(ammo / max_clip) > 0)
         {
             clip = max_clip;
@@ -52,6 +57,8 @@ public class PlayerSystem : MonoBehaviour
             clip = ammo;
             ammo = 0;
         }
+
+        // Timer start
         shootTimeInterval = 1 / shootSpeed;
         ReloadTimeInterval = 1 / ReloadSpeed;
 
@@ -60,9 +67,11 @@ public class PlayerSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Calculate clips
         int clip_num = (int)(ammo / max_clip);        
         ReloadTimer += Time.deltaTime;
 
+        // Change attack state
         if (Input.GetMouseButtonDown(0) && clip !=0) {
             isAttack = true;
         }
@@ -70,12 +79,14 @@ public class PlayerSystem : MonoBehaviour
             isAttack = false;
         }
 
+        // Reload condition judgemnent
         if (Input.GetKey("r") && ammo != 0 && clip != max_clip && !isAttack && (ReloadTimer > ReloadTimeInterval)) {
             reload();
             ReloadTimer = 0;
         }
 
         shootTimer += Time.deltaTime;
+        // Fire condition judgement
         if ((shootTimer > shootTimeInterval) && isAttack && clip != 0 && TPSC.isAiming)
         {
             fire();
@@ -85,6 +96,7 @@ public class PlayerSystem : MonoBehaviour
         else {
             isShoot = false;
         }
+        // Invoke pause menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
           if (gamePause){
@@ -95,10 +107,13 @@ public class PlayerSystem : MonoBehaviour
             Pause();
           }
         }
+
+        // Player UI Display
         PlayerUI.text = "HP: " + healthPoint + "  Ammo:" + clip + "/" + max_clip + " Ammunition:" + clip_num + "*" + max_clip ;
 
     }
 
+    // From pause menu to resume
     public void Resume()
     {
       PauseMenuUI.SetActive(false);
@@ -106,6 +121,7 @@ public class PlayerSystem : MonoBehaviour
       gamePause = false;
     }
 
+    // From game to pause menu
     public void Pause()
     {
       PauseMenuUI.SetActive(true);
@@ -113,38 +129,44 @@ public class PlayerSystem : MonoBehaviour
       gamePause = true;
     }
 
+    // Reload function for player
     private void reload()
     {
-        Reload_eff.Play();
+        Reload_eff.Play();// Reload effects
         if ((ammo - max_clip) <= 0) {
+            // last ammo can't fill one clips
             clip = ammo;
-            ammo = 0;
+            ammo = 0;// set ammo to 0
             if (clip < 0) {
                 clip = 0;
             }
         }
         if ((ammo - max_clip) > 0) {
-            ammo = ammo - max_clip;
-            clip = max_clip;
+            // last ammo can fill one clips
+            ammo = ammo - max_clip;// calculate last ammo
+            clip = max_clip;// reload clips
         }
     }
 
     private void fire() {
-        //计算准星的位置
-        //Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+        // Get fire point position
         Vector3 rayOrigin = firePoint.transform.position;
-        print(rayOrigin);
+        // Get target postion
         Vector3 targetPosition = Camera.main.transform.position + Camera.main.transform.forward * (int)range;
+        // Initilization RaycastHit
         RaycastHit hit;
-        clip -= 1;
-        ads.Play();
+        clip -= 1;// Reduce ammo in clips
+        ads.Play();// Fire effects
         if (Physics.Raycast(rayOrigin, Camera.main.transform.forward, out hit, (int)range))
+            // Fire by raycast. Get Raycast Hit
         {
-            if (hit.collider.gameObject.tag == "Zombie") {
-                gs.HitTo(hit.collider.gameObject);
-                ads_suffer.Play();
-                HitMessage.text = "Take demage to " + hit.collider.gameObject.tag + " :" + attackPoint;
-                this.Invoke("ResetMessage", (float)0.5);
+            if (hit.collider.gameObject.tag == "Zombie") 
+            // If we hit Zombie
+            {
+                gs.HitTo(hit.collider.gameObject);// Take damages
+                ads_suffer.Play();// Hit effects
+                HitMessage.text = "Take demage to " + hit.collider.gameObject.tag + " :" + attackPoint;// Test UI
+                this.Invoke("ResetMessage", (float)0.5);//  Reset test UI
             }
             targetPosition = hit.point;
         }

@@ -11,7 +11,7 @@ public class TPSCrossHair : MonoBehaviour
     public TPSCamera tPSCamera;
     private GUIStyle lineStyle;
     private Texture tex;
-    private bool isAiming = false;//是否正在瞄准
+    private bool isAiming = false;//Is aiming or not
 
     // Use this for initialization
     void Start()
@@ -23,6 +23,7 @@ public class TPSCrossHair : MonoBehaviour
     // Update is called once per frame
     void OnGUI()
     {
+        // Draw crosshair
         if (tPSCamera.isAiming) {
             GUI.Box(new Rect((Screen.width - distance) / 2 - length, (Screen.height - width) / 2, length, width), tex, lineStyle);
             GUI.Box(new Rect((Screen.width + distance) / 2, (Screen.height - width) / 2, length, width), tex, lineStyle);
