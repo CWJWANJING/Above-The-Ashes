@@ -12,6 +12,7 @@ public class touchRotate : MonoBehaviour
   }
   void rotate()
   {
+      // if player hasn't win yet, keep rotating
       if (!puzzleControl.win){
         transform.Rotate(0f, 0f, 90f);
       }

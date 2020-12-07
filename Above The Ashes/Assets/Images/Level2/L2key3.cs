@@ -24,6 +24,7 @@ public class L2key3 : MonoBehaviour
     {
       // tell user to press f to pick up
       UIObject.SetActive(true);
+      // if player is close enough with the key
       if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 2)
       {
         if (Input.GetKey("f"))
@@ -31,7 +32,6 @@ public class L2key3 : MonoBehaviour
           UIObject.SetActive(false);
           key3.SetActive(false);
           key3Found = true;
-          // L2exitContr.N++;
         }
       }
 

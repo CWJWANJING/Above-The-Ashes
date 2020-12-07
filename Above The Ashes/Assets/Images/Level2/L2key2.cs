@@ -13,6 +13,7 @@ public class L2key2 : MonoBehaviour
   void Start()
   {
     // at first the text should not display
+    Debug.Log("setting key 2 to false");
     UIObject.SetActive(false);
   }
 
@@ -26,13 +27,13 @@ public class L2key2 : MonoBehaviour
       UIObject.SetActive(true);
       if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 2)
       {
-        Debug.Log("key2");
+        // if key F is pressed
         if (Input.GetKey("f"))
         {
+          // instruction texts should disappear
           UIObject.SetActive(false);
           key2.SetActive(false);
           key2Found = true;
-          // L2exitContr.N++;
         }
       }
     }

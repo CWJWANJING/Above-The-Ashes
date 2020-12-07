@@ -9,17 +9,12 @@ public class puzzleControl : MonoBehaviour
     public static bool win = false;
     public static bool win_state = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         GameObject puzzle = GameObject.FindGameObjectWithTag("Puzzle");
 
+        // only when the puzzles are all back to the original position
         if (images[0].rotation.z == 0 &&
          images[1].rotation.z == 0 &&
          images[2].rotation.z == 0 &&
@@ -35,9 +30,9 @@ public class puzzleControl : MonoBehaviour
          )
          {
             puzzle.GetComponent<showPuzzleWeapon>().playPuzzle = false;
-           win = true;
+            win = true;
             win_state = true;
-           Debug.Log("Win.");
+            Debug.Log("Win.");
          }
     }
 

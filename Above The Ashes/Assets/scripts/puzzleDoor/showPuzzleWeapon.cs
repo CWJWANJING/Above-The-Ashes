@@ -57,8 +57,6 @@ public class showPuzzleWeapon : MonoBehaviour
           // if key q is pressed
           if (Input.GetKey("q"))
           {
-            // // puzzle disappear, cursor disappers
-            // Cursor.visible = false;
             // image will disappear
             puzzleImage.gameObject.SetActive(false);
             puzzle.GetComponent<showPuzzleWeapon>().playPuzzle = false;

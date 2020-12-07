@@ -5,17 +5,17 @@ using UnityEngine;
 public class L2S2 : MonoBehaviour
 {
     public GameObject UIObject;
-	public GameObject Door3;
-	public GameObject player;
-	private Vector3 offset = new Vector3 (0.0f, 1.0f,0.0f);
-	private bool trigger;
-	
+  	public GameObject Door3;
+  	public GameObject player;
+  	private Vector3 offset = new Vector3 (0.0f, 1.0f,0.0f);
+  	private bool trigger;
+
     void Start()
     {
         // at first the text should not display
         UIObject.SetActive(false);
 		trigger = false;
-		
+
     }
 
 
@@ -23,11 +23,11 @@ public class L2S2 : MonoBehaviour
     {
        if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) < 1.5){
 			UIObject.SetActive(true);
-			
+
 			if(Input.GetKey("f")){
 				//print(trigger);
 				trigger = true;
-				
+
 			}
 
 				//door3open = true;
@@ -50,6 +50,6 @@ public class L2S2 : MonoBehaviour
 			Door3.transform.localEulerAngles = Door3.transform.localEulerAngles + offset;
 		}
     }
-    
+
 
 }

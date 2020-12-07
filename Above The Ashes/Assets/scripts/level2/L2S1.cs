@@ -6,20 +6,20 @@ public class L2S1 : MonoBehaviour
 {
     public GameObject UIObject;
     public GameObject Door1;
-	public GameObject Door2;
-	public GameObject player;
-	private Vector3 offset = new Vector3 (0.0f, 1.0f,0.0f);
-	private bool trigger;
-	private double shootTimer = 0;
+  	public GameObject Door2;
+  	public GameObject player;
+  	private Vector3 offset = new Vector3 (0.0f, 1.0f,0.0f);
+  	private bool trigger;
+  	private double shootTimer = 0;
     private double shootTimeInterval = 0.1;
-	
-	
+
+
     void Start()
     {
         // at first the text should not display
         UIObject.SetActive(false);
 		trigger = false;
-		
+
     }
 
 
@@ -39,9 +39,9 @@ public class L2S1 : MonoBehaviour
 				}
 					shootTimer = 0;
 				}
-				
-				
-				
+
+
+
 			}
 
 		}else{
@@ -64,12 +64,12 @@ public class L2S1 : MonoBehaviour
 		if(Door1.transform.localEulerAngles.y >= 90f&&Door1.transform.localEulerAngles.y < 180f){
 			Door1.transform.localEulerAngles = Door1.transform.localEulerAngles + offset;
 		}
-		
+
 		if(Door2.transform.localEulerAngles.y >= 0f&&Door2.transform.localEulerAngles.y < 90f){
 			Door2.transform.localEulerAngles = Door2.transform.localEulerAngles + offset;
 		}
     }
-    
+
 	void ActionB(){
 
 		if(Door1.transform.localEulerAngles.y <= 181f&&Door1.transform.localEulerAngles.y > 91f){
@@ -79,6 +79,6 @@ public class L2S1 : MonoBehaviour
 			Door2.transform.localEulerAngles = Door2.transform.localEulerAngles - offset;
 		}
     }
-	
+
 
 }

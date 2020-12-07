@@ -16,6 +16,7 @@ public class puzzleAutodoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      // if win is true
       if (puzzleControl.win)
       {
         anim.SetTrigger("openDoor");
